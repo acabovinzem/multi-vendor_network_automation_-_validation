@@ -1,0 +1,52 @@
+2026-10-03 00:26:43,327 -  nornir.core -     INFO -        run() - Running task 'get_version' with args {} on 1 hosts
+2026-10-03 00:26:53,366 - nornir.core.task -    ERROR -      start() - Host 'dummy_router': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/netmiko/base_connection.py", line 1146, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/paramiko/client.py", line 364, in connect
+    sock.connect(addr)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/nornir/core/inventory.py", line 476, in get_connection
+    self.open_connection(
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/nornir/core/inventory.py", line 528, in open_connection
+    conn_obj.open(
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/netmiko/ssh_dispatcher.py", line 460, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/netmiko/base_connection.py", line 495, in __init__
+    self._open()
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/netmiko/base_connection.py", line 500, in _open
+    self.establish_connection()
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/netmiko/base_connection.py", line 1168, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: linux 192.0.2.1:22
+
+
+
+2026-10-03 00:26:53,367 - nornir.core.task -    ERROR -      start() - Host 'dummy_router': task 'get_version' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Users/vinzemacabo/Documents/Multi-Vendor Network Automation & Validation Project/test_multi_vendor.py", line 8, in get_version
+    result = task.run(task = netmiko_send_command, command_string= "show version")
+  File "/Users/vinzemacabo/Library/Python/3.9/lib/python/site-packages/nornir/core/task.py", line 173, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
