@@ -1,8 +1,2 @@
-ios_xe:
-    platform: cisco_xe
-
-ios xr:
-     platform: cisco_xr
-
-linux:
-    platform: linux
+frr:
+   platform: linux
