@@ -1,5 +1,9 @@
-dummy_router:
-    hostname: 192.0.2.1
+r1:
+    hostname: 172.20.20.3
     groups:
         - linux
-        
+r2:
+    hostname: 172.20.20.2
+    groups:
+        - linux
+#I replaced the dummy router for a FRR containers running as virtual routers 
